@@ -63,12 +63,13 @@
 
     &__text {
       display: flex;
-      flex-direction: column;
+      flex-direction: column;;
     }
 
     &__address {
       font-size: 16px;
       margin-bottom: 4px;
+      font-weight: 600
     }
 
     &__balance {

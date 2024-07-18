@@ -4,6 +4,7 @@
       class="the-shop-content__item"
       v-for="(item, index) in stateStore.shopItems"
       :key="index"
+      @click="$emit('open', item)"
     >
       <div class="the-shop-content__item-info">
         <div class="the-shop-content__fireboom-wrapper">
@@ -18,9 +19,6 @@
       <BaseIcon :svg="stateStore.icons['arrow-right']" />
     </BaseCard>
   </BaseCardWrapper>
-  <BaseModal show>
-    
-  </BaseModal>
 </template>
 
 <script>
@@ -29,15 +27,13 @@
   import BaseIcon from "./BaseElements/BaseIcon.vue";
   import { mapStores } from 'pinia'
   import { useStateStore } from '../stores/state'
-  import BaseModal from '../components/BaseElements/BaseModal.vue';
 
   export default {
     name: 'TheShopContent',
     components: {
       BaseCardWrapper,
       BaseCard,
-      BaseIcon,
-      BaseModal
+      BaseIcon
     },
     computed: {
       ...mapStores(useStateStore)

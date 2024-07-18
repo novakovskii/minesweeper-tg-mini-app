@@ -4,6 +4,7 @@
       class="the-play-content__card"
       v-for="(option, index) in stateStore.gameOptions"
       :key="index"
+      @click="onPlayClick(option)"
     >
       <div class="the-play-content__card-text">
         <div class="the-play-content__card-text-difficulty">{{ option.difficulty }}</div>
@@ -11,7 +12,6 @@
       </div>
       <BaseButton 
         class="accent-primary--bg"
-        @click="onPlayClick(option)"
       >Play</BaseButton>
       <div class="the-play-content__card-text-prize"><span class="text-secondary--text">Prize:</span> <span class="success--text">{{ option.prize }} XP</span></div>
     </BaseCard>
@@ -50,6 +50,7 @@
       position: relative;
       padding-bottom: calc(16px + 25px);
       overflow: hidden;
+      cursor: pointer;
     }
 
     &__card-text {

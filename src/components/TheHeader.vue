@@ -10,7 +10,7 @@
       <div class="the-header__text">
         <span v-if="user.accounts.near" class="the-header__address">{{ user.accounts.near }}</span>
         <span v-else class="the-header__address">unidentified.address</span>
-        <span class="the-header__balance text-secondary--text">8000 XP</span>
+        <span class="the-header__balance text-secondary--text">{{ stateStore.balance }} XP</span>
       </div>
       <BaseIcon 
         class="the-header__icon"

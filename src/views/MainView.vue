@@ -7,12 +7,27 @@
       <ThePlayContent />
     </template>
     <template #tab-content-1>
-      <TheShopContent />
+      <TheShopContent @open="onShopModalOpen" />
     </template>
     <template #tab-content-2>
       <TheHistoryContent />
     </template>
   </BaseTabs>
+  <BaseModal
+    :show="showShopModal"
+    closable
+    @close="showShopModal = false"
+  >
+    <div class="the-shop-content__modal-text"><span class="accent-secondary--text">{{ shopItem.name }} × {{ shopItem.quantity }}</span> = {{ shopItem.price }} XP</div>
+    <BaseButton 
+      class="the-shop-content__modal-button accent-primary--bg"
+      :disabled="stateStore.balance < shopItem.price"
+    >Buy</BaseButton>
+    <div 
+      v-if="stateStore.balance < shopItem.price" 
+      class="the-shop-content__modal-error error--text error-10--bg"
+    >Not enough XP</div>
+  </BaseModal>
 </template>
 
 <script>
@@ -21,6 +36,10 @@
   import ThePlayContent from '../components/ThePlayContent.vue';
   import TheShopContent from '../components/TheShopContent.vue';
   import TheHistoryContent from '../components/TheHistoryContent.vue';
+  import BaseModal from '../components/BaseElements/BaseModal.vue';
+  import BaseButton from '../components/BaseElements/BaseButton.vue';
+  import { mapStores } from 'pinia'
+  import { useStateStore } from '../stores/state'
 
   export default {
     name: 'MainView',
@@ -29,7 +48,9 @@
       BaseTabs,
       ThePlayContent,
       TheShopContent,
-      TheHistoryContent
+      TheHistoryContent,
+      BaseModal,
+      BaseButton
     },
     data() {
       return {
@@ -37,12 +58,42 @@
           'Play',
           'Shop',
           'History'
-        ]
+        ],
+        showShopModal: false,
+        shopItem: null
+      }
+    },
+    computed: {
+      ...mapStores(useStateStore)
+    },
+    methods: {
+      onShopModalOpen(item) {
+        this.shopItem = item
+        this.showShopModal = true
       }
     }
   }
 </script>
 
 <style lang="scss">
-  
+  .the-shop-content__modal-text {
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .the-shop-content__modal-button {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .the-shop-content__modal-error {
+    width: 100%;
+    height: 46px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
 </style>

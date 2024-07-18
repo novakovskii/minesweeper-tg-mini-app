@@ -1,5 +1,8 @@
 <template>
-  <button class="base-button">
+  <button 
+    class="base-button"
+    :class="{'base-button--disabled': disabled}"
+  >
     <slot />
     <div v-if="$slots.icon" class="base-button__icon">
       <slot name="icon" />
@@ -9,7 +12,13 @@
 
 <script>
 export default {
-  name: 'BaseButton'
+  name: 'BaseButton',
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 <style lang="scss">
@@ -35,8 +44,9 @@ export default {
       transform: translate(4px, 4px);
     }
 
-    &__icon {
-      
+    &--disabled {
+      pointer-events: none;
+      background-color: var(--color-disabled);
     }
   }
 </style>

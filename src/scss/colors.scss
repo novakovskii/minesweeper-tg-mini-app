@@ -1,19 +1,40 @@
+$colors: (
+    "bg-primary": #EBDEDC,
+    "bg-secondary": #F3EBEA,
+    "accent-primary": #FDBF1E,
+    "accent-secondary": #D86410,
+    "text-primary": #2C3034,
+    "text-secondary": #6B6661,
+    "success": #429D4B,
+    "success-10": rgba(66, 157, 75, 0.1),
+    "error": #D63E3E,
+    "border": #C7BAB8,
+    "cell-1": #5C5CFF,
+    "cell-2": #429D4B,
+    "cell-3": #D63E3E,
+    "cell-4": #434395,
+    "cell-5": #8D2D2D,
+    "cell-6": #209595,
+    "cell-7": #2C3034,
+    "cell-8": #6B6661
+);
+
 :root {
-    --color-bg-primary: #EBDEDC;
-    --color-bg-secondary: #F3EBEA;
-    --color-accent-primary: #FDBF1E;
-    --color-accent-secondary: #D86410;
-    --color-text-primary: #2C3034;
-    --color-text-secondary: #6B6661;
-    --color-success: #429D4B;
-    --color-error: #D63E3E;
-    --color-border: #C7BAB8;
-    --color-cell-1: #5C5CFF;
-    --color-cell-2: var(--color-success);
-    --color-cell-3: var(--color-error);
-    --color-cell-4: #434395;
-    --color-cell-5: #8D2D2D;
-    --color-cell-6: #209595;
-    --color-cell-7: var(--color-text-primary);
-    --color-cell-8: var(--color-text-secondary);
+    @each $name, $value in $colors {
+        --color-#{$name}: #{$value};
+    }
+}
+
+@mixin generate-color-classes($name) {
+    .#{$name}--bg {
+        background-color: var(--color-#{$name});
+    }
+    
+    .#{$name}--text {
+        color: var(--color-#{$name});
+    }
+}
+
+@each $name, $value in $colors {
+    @include generate-color-classes($name);
 }

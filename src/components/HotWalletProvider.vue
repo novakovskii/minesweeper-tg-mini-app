@@ -26,16 +26,16 @@
       });
   
       onMounted(async () => {
-        const hh = await HereWallet.connect({
+        const hereWallet = await HereWallet.connect({
           botId: "hotHack1461Bot/app",
           walletId: "herewalletbot/app"
         });
 
-        here.value = hh;
+        here.value = hereWallet;
   
-        const isSigned = await hh.isSignedIn();
+        const isSigned = await hereWallet.isSignedIn();
         if (isSigned) {
-          const near = await hh.getAccountId();
+          const near = await hereWallet.getAccountId();
           user.accounts.near = near;
           // Update other accounts if needed
         }

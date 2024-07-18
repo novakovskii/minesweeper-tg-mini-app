@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Black.eot');
+    src: url('CabinetGrotesk-Black.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Black.woff2') format('woff2'),
+        url('CabinetGrotesk-Black.woff') format('woff'),
+        url('CabinetGrotesk-Black.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Extrabold.eot');
+    src: url('CabinetGrotesk-Extrabold.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Extrabold.woff2') format('woff2'),
+        url('CabinetGrotesk-Extrabold.woff') format('woff'),
+        url('CabinetGrotesk-Extrabold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Bold.eot');
+    src: url('CabinetGrotesk-Bold.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Bold.woff2') format('woff2'),
+        url('CabinetGrotesk-Bold.woff') format('woff'),
+        url('CabinetGrotesk-Bold.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Extralight.eot');
+    src: url('CabinetGrotesk-Extralight.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Extralight.woff2') format('woff2'),
+        url('CabinetGrotesk-Extralight.woff') format('woff'),
+        url('CabinetGrotesk-Extralight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Light.eot');
+    src: url('CabinetGrotesk-Light.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Light.woff2') format('woff2'),
+        url('CabinetGrotesk-Light.woff') format('woff'),
+        url('CabinetGrotesk-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Medium.eot');
+    src: url('CabinetGrotesk-Medium.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Medium.woff2') format('woff2'),
+        url('CabinetGrotesk-Medium.woff') format('woff'),
+        url('CabinetGrotesk-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Regular.eot');
+    src: url('CabinetGrotesk-Regular.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Regular.woff2') format('woff2'),
+        url('CabinetGrotesk-Regular.woff') format('woff'),
+        url('CabinetGrotesk-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Thin.eot');
+    src: url('CabinetGrotesk-Thin.eot?#iefix') format('embedded-opentype'),
+        url('CabinetGrotesk-Thin.woff2') format('woff2'),
+        url('CabinetGrotesk-Thin.woff') format('woff'),
+        url('CabinetGrotesk-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+

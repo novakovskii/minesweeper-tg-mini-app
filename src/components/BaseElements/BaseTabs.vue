@@ -89,7 +89,7 @@
           this.progressPercentages.push(i)
         }
         if (!this.paginationRenderedOnce) {
-          this.$refs['tab-marker'].style.left = `${swiper.pagination.bullets[0].getBoundingClientRect().left - 16}px`
+          this.$refs['tab-marker'].style.left = `${swiper.pagination.bullets[0].getBoundingClientRect().left}px`
           this.$refs['tab-marker'].style.width = `${swiper.pagination.bullets[0].getBoundingClientRect().width}px`
         } 
         this.paginationRenderedOnce = true
@@ -111,7 +111,7 @@
                 
                 let progressRatio = (progress - startPercent) / (endPercent - startPercent);
                 let coordinate = startCoord + progressRatio * (endCoord - startCoord);
-                return coordinate - 16;
+                return coordinate;
             }
         }
         
@@ -156,6 +156,8 @@
     left: 0;
     top: 0;
     z-index: 2;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
 
   .tab {

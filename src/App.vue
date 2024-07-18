@@ -21,7 +21,6 @@
     background-color: var(--color-bg-primary);
     font-family: var(--font-family-primary);
     color: var(--color-text-primary);
-    padding: 16px;
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;

@@ -7,9 +7,9 @@ import ProfileView from '../views/ProfileView.vue'
 import HelpView from '../views/HelpView.vue'
 
 const routes = [
-  { path: '/', component: GameView },
+  { path: '/', component: LoginView },
   { path: '/main', component: MainView },
-  { path: '/game', component: GameView },
+  { path: '/game', component: GameView, props: route => ({ difficulty: route.query.difficulty })},
   { path: '/profile', component: ProfileView },
   { path: '/help', component: HelpView },
 ]

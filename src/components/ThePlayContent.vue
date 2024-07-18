@@ -2,18 +2,18 @@
   <BaseCardWrapper class="the-play-content">
     <BaseCard 
       class="the-play-content__card"
-      v-for="(option, index) in gameOptions"
+      v-for="(option, index) in stateStore.gameOptions"
       :key="index"
     >
       <div class="the-play-content__card-text">
         <div class="the-play-content__card-text-difficulty">{{ option.difficulty }}</div>
-        <div class="the-play-content__card-text-size"><span class="text-secondary--text">Size:</span> {{ option.size }}</div>
+        <div class="the-play-content__card-text-size"><span class="text-secondary--text">Size:</span> {{ option.cols }}×{{ option.rows }}</div>
       </div>
       <BaseButton 
         class="accent-primary--bg"
-        @click="onPlayClick"
+        @click="onPlayClick(option)"
       >Play</BaseButton>
-      <div class="the-play-content__card-text-prize"><span class="text-secondary--text">Prize:</span> <span class="success--text">{{ option.prize }}</span></div>
+      <div class="the-play-content__card-text-prize"><span class="text-secondary--text">Prize:</span> <span class="success--text">{{ option.prize }} XP</span></div>
     </BaseCard>
   </BaseCardWrapper>
 </template>
@@ -22,6 +22,8 @@
   import BaseCardWrapper from './BaseElements/BaseCardWrapper.vue';
   import BaseCard from './BaseElements/BaseCard.vue';
   import BaseButton from "./BaseElements/BaseButton.vue";
+  import { mapStores } from 'pinia'
+  import { useStateStore } from '../stores/state'
 
   export default {
     name: 'ThePlayContent',
@@ -30,30 +32,12 @@
       BaseCard,
       BaseButton
     },
-    data () {
-      return {
-        gameOptions: [
-          {
-            difficulty: 'Easy',
-            size: '9x9',
-            prize: '19 XP'
-          },
-          {
-            difficulty: 'Medium',
-            size: '16x16',
-            prize: '57 XP'
-          },
-          {
-            difficulty: 'Hard',
-            size: '16x30',
-            prize: '99 XP'
-          }
-        ]
-      }
+    computed: {
+      ...mapStores(useStateStore)
     },
     methods: {
-      onPlayClick() {
-        this.$router.push('/game')
+      onPlayClick(option) {
+        this.$router.push({path: '/game', query: { difficulty: option.difficulty }})
       }
     }
   };

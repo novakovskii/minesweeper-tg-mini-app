@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 16px;
 
     &__preview {
       width: 100%;

@@ -1,6 +1,9 @@
 <template>
   <button class="base-button">
     <slot />
+    <div v-if="$slots.icon" class="base-button__icon">
+      <slot name="icon" />
+    </div>
   </button>
 </template>
 
@@ -30,6 +33,10 @@ export default {
     &:active {
       box-shadow: var(--color-text-primary) 0px 0px 0px;
       transform: translate(4px, 4px);
+    }
+
+    &__icon {
+      
     }
   }
 </style>

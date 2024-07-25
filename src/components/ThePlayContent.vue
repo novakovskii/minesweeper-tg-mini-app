@@ -14,7 +14,7 @@
       <BaseButton 
         class="accent-primary--bg"
       >Play</BaseButton>
-      <div class="the-play-content__card-text-prize"><span class="text-secondary--text">Prize:</span> <span class="success--text">{{ option.prize }} XP</span></div>
+      <div class="the-play-content__card-text-prize"><span class="text-secondary--text">Prize: </span><span class="success--text">up to {{ option.prize }} XP</span></div>
     </BaseCard>
   </BaseCardWrapper>
 </template>

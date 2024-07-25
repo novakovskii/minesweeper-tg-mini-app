@@ -12,6 +12,9 @@
     <template #tab-content-2>
       <TheHistoryContent />
     </template>
+    <template #tab-content-3>
+      <TheLeaderboardContent />
+    </template>
   </BaseTabs>
   <BaseModal
     :show="showShopModal"
@@ -46,6 +49,7 @@
   import ThePlayContent from '../components/ThePlayContent.vue';
   import TheShopContent from '../components/TheShopContent.vue';
   import TheHistoryContent from '../components/TheHistoryContent.vue';
+  import TheLeaderboardContent from '../components/TheLeaderboardContent.vue';
   import BaseModal from '../components/BaseElements/BaseModal.vue';
   import BaseButton from '../components/BaseElements/BaseButton.vue';
   import { mapStores } from 'pinia'
@@ -60,6 +64,7 @@
       ThePlayContent,
       TheShopContent,
       TheHistoryContent,
+      TheLeaderboardContent,
       BaseModal,
       BaseButton
     },
@@ -68,7 +73,8 @@
         tabs: [
           'Play',
           'Shop',
-          'History'
+          'History',
+          'Leaderboard'
         ],
         showShopModal: false,
         showPlugModal: false,

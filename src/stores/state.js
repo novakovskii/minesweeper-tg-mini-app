@@ -4,26 +4,27 @@ export const useStateStore = defineStore('state', {
   state: () => ({
     balance: 0,
     games: [],
+    leaderboard: [],
     gameOptions: [
       {
         difficulty: 'easy',
         cols: 9,
         rows: 9,
-        prize: 19,
+        prize: 1000,
         mines: 10
       },
       {
         difficulty: 'medium',
         cols: 16,
         rows: 16,
-        prize: 57,
+        prize: 3000,
         mines: 40
       },
       {
         difficulty: 'hard',
         cols: 16,
         rows: 30,
-        prize: 99,
+        prize: 6000,
         mines: 99
       }
     ],
@@ -31,17 +32,17 @@ export const useStateStore = defineStore('state', {
       {
         name: 'Fireboom',
         quantity: 1,
-        price: 9000
+        price: 90000
       },
       {
         name: 'Fireboom',
         quantity: 3,
-        price: 25000
+        price: 250000
       },
       {
         name: 'Fireboom',
         quantity: 9,
-        price: 70000
+        price: 700000
       }
     ],
     icons: {
@@ -63,6 +64,9 @@ export const useStateStore = defineStore('state', {
     },
     setGames(value) {
       this.games = value
+    },
+    setLeaderboard(value) {
+      this.leaderboard = value
     }
   }
 })

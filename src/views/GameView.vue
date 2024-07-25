@@ -197,6 +197,7 @@
           const score = data.score
 
           if (status === 'win') {
+            Telegram.WebApp.HapticFeedback.notificationOccurred('success')
             clearInterval(this.timeInterval)
             this.timeInterval = null
             this.isGameInProcess = false

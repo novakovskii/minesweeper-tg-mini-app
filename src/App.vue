@@ -17,6 +17,10 @@
 </script>
 
 <style lang="scss">
+  body {
+    background-color: var(--color-bg-primary);
+  }
+  
   #app {
     background-color: var(--color-bg-primary);
     font-family: var(--font-family-primary);

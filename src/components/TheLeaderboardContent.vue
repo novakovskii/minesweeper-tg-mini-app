@@ -77,7 +77,7 @@
 
     &__grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 100px 1fr 80px;
       width: 100%;
       border-radius: 8px;
       border: 1px solid var(--color-border);

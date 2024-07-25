@@ -11,12 +11,12 @@
       <div class="profile-view__user-info">
         <div v-if="user.accounts.near" class="profile-view__address">{{ user.accounts.near }}</div>
         <div v-else class="profile-view__address">unidentified.address</div>
-        <div class="profile-view__balance text-secondary--text">{{ stateStore.balance }} XP</div>
+        <div class="profile-view__balance text-secondary--text">{{ balance }} XP</div>
       </div>
     </BaseCard>
     <BaseCard 
       class="profile-view__card profile-view__card--logout"
-      @click="logout"
+      @click="onLogout"
     >
       <BaseIcon 
         class="profile-view__icon profile-view__icon--logout"
@@ -48,6 +48,7 @@
       return {
         logout: null,
         user: null,
+        balance: 0
       };
     },
     computed: {
@@ -57,6 +58,21 @@
       const { logout, user } = useHotWallet();
       this.logout = logout;
       this.user = user;
+    },
+    mounted() {
+      Telegram.WebApp.BackButton.show()
+      Telegram.WebApp.onEvent('backButtonClicked', () => {
+        this.$router.push('/main')
+      });
+
+      fetch(`https://repredess.ru/api/get_score?user_id=${this.user.accounts.near === '' ? 'uymuct.tg' : this.user.accounts.near}`, {
+        method: 'GET'
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.balance = data.score
+      })
+      .catch(error => console.error('Error:', error));
     },
     methods: {
       onLogout() {

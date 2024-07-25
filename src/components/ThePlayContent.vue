@@ -9,6 +9,7 @@
       <div class="the-play-content__card-text">
         <div class="the-play-content__card-text-difficulty">{{ option.difficulty }}</div>
         <div class="the-play-content__card-text-size"><span class="text-secondary--text">Size:</span> {{ option.cols }}×{{ option.rows }}</div>
+        <div class="the-play-content__card-text-size"><span class="text-secondary--text">Mines:</span> {{ option.mines }}</div>
       </div>
       <BaseButton 
         class="accent-primary--bg"
@@ -49,7 +50,7 @@
     &__card {
       position: relative;
       padding-bottom: calc(16px + 25px);
-      overflow: hidden;
+      // overflow: hidden;
       cursor: pointer;
     }
 
@@ -62,6 +63,7 @@
     &__card-text-difficulty {
       font-size: 16px;
       font-weight: 600;
+      text-transform: capitalize;
     }
 
     &__card-text-size {
@@ -78,6 +80,8 @@
       box-sizing: border-box;
       text-align: center;
       border-top: 1px solid var(--color-border);
+      border-bottom-right-radius: 16px;
+      border-bottom-left-radius: 16px;
     }
   }
 </style>

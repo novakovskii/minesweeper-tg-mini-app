@@ -40,6 +40,7 @@
   import BaseButton from '../components/BaseElements/BaseButton.vue';
   import { mapStores } from 'pinia'
   import { useStateStore } from '../stores/state'
+  import { useHotWallet } from '../components/HotWalletProvider.vue';
 
   export default {
     name: 'MainView',
@@ -60,11 +61,19 @@
           'History'
         ],
         showShopModal: false,
-        shopItem: null
+        shopItem: null,
+        user: null
       }
     },
     computed: {
       ...mapStores(useStateStore)
+    },
+    created() {
+      const { user } = useHotWallet();
+      this.user = user;
+    },
+    mounted() {
+      Telegram.WebApp.BackButton.hide()
     },
     methods: {
       onShopModalOpen(item) {

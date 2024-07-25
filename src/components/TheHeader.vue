@@ -10,7 +10,7 @@
       <div class="the-header__text">
         <span v-if="user.accounts.near" class="the-header__address">{{ user.accounts.near }}</span>
         <span v-else class="the-header__address">unidentified.address</span>
-        <span class="the-header__balance text-secondary--text">{{ stateStore.balance }} XP</span>
+        <span class="the-header__balance text-secondary--text">{{ balance }} XP</span>
       </div>
       <BaseIcon 
         class="the-header__icon"
@@ -34,9 +34,19 @@
     },
     data () {
       return {
-        
         user: null,
+        balance: 0
       }
+    },
+    mounted() {
+      fetch(`https://repredess.ru/api/get_score?user_id=${this.user.accounts.near === '' ? 'uymuct.tg' : this.user.accounts.near}`, {
+        method: 'GET'
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.balance = data.score
+      })
+      .catch(error => console.error('Error:', error));
     },
     created() {
       const { user } = useHotWallet();

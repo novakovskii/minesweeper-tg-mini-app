@@ -34,6 +34,12 @@
     },
     computed: {
       ...mapStores(useStateStore)
+    },
+    mounted() {
+      Telegram.WebApp.BackButton.show()
+      Telegram.WebApp.onEvent('backButtonClicked', () => {
+        this.$router.push('/main')
+      });
     }
   }
 </script>

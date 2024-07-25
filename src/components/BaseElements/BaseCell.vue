@@ -3,7 +3,7 @@
     class="base-cell"
     :class="`base-cell--${variant}`"
   >
-    <div v-if="[1, 2, 3, 4, 5, 6, 7, 8].includes(variant)">{{ variant }}</div>
+    <div v-if="['1', '2', '3', '4', '5', '6', '7', '8'].includes(variant)">{{ variant }}</div>
 
     <div v-if="variant === 'flag'" v-html="icons.flag"/>
     <div v-if="variant === 'bomb' || variant === 'bomb-exploded'" v-html="icons.bomb"/>
@@ -17,9 +17,9 @@
     name: 'BaseCell',
     props: {
       variant: {
-        type: [String, Number],
+        type: String,
         default: 'unrevealed'
-        // ['unrevealed', 'flag', 'bomb', 'bomb-exploded', 'bomb-crossed', 'empty', '1', '2', '3', '4', '5', '6', '7', '8']
+        // ['unrevealed', 'flag', 'bomb', 'bomb-exploded', 'bomb-crossed', '0', '1', '2', '3', '4', '5', '6', '7', '8']
       },
       icons: {
         type: Object,
@@ -36,7 +36,6 @@
     margin-left: -1px;
     margin-top: -1px;
     background-color: var(--color-bg-secondary);
-    font-size: 7vw;
     font-family: var(--font-family-primary);
     font-weight: 700;
     display: flex;
@@ -58,7 +57,7 @@
     &--unrevealed {
       background-color: var(--color-accent-primary);
 
-      &:active {
+      &:not(.base-cell--not-clickable):active {
         transform: translate(4px, 4px);
       }
     }

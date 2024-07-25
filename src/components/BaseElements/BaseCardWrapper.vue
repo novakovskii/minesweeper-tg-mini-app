@@ -15,6 +15,15 @@
     flex-direction: column;
     gap: 8px;
     padding: 0 16px;
+    overflow: auto;
+    max-height: 100%;
+
+    .base-card {
+
+      &:last-child {
+        margin-bottom: 16px;
+      }
+    }
   }
 </style>
       

@@ -17,16 +17,18 @@
       cols: {
         type: Number,
         default: 9
-      },
-      rows: {
-        type: Number,
-        default: 9
       }
     },
     mounted() {
-      panzoom(this.$refs['the-board'], {
-        zoomDoubleClickSpeed: 1
+      const instance = panzoom(this.$refs['the-board'], {
+        zoomDoubleClickSpeed: 1,
+        bounds: true,
+        boundsPadding: 0.1,
+        onClick: function(e) {
+          return false; 
+        }
       })
+
     }
   };
 </script>

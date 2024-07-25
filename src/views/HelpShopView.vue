@@ -21,6 +21,12 @@
     name: 'HelpShopView',
     components: {
       TheHeader
+    },
+    mounted() {
+      Telegram.WebApp.BackButton.show()
+      Telegram.WebApp.onEvent('backButtonClicked', () => {
+        this.$router.push('/help')
+      });
     }
   }
 </script>

@@ -6,6 +6,9 @@
     </TheHeader>
     <TheBoard 
       :cols="gameOption.cols"
+      @panstart="onPanstart"
+      @panend="onPanend"
+      @zoom="onZoom"
     >
       <template 
         v-for="(row, rowIndex) in board"
@@ -37,7 +40,7 @@
       @close="result = null"
     >
       <template v-if="result === 'win'">
-        <div class="game-view__result-title">Congratulations!<br>You've cleared all the mines in&nbsp;<span class="accent-secondary--text">{{ time }}</span>&nbsp;seconds.</div>
+        <div class="game-view__result-title">Congratulations!<br>You've cleared all the mines in&nbsp;<span class="accent-secondary--text">{{ fullTime }}</span>&nbsp;seconds.</div>
         <div class="game-view__result-text success--text success-10--bg">+{{ score }} XP</div>
       </template>
       <template v-else-if="result === 'loss'">
@@ -102,12 +105,16 @@
     data () {
       return {
         isGameInProcess: false,
+        isPanInProcess: false,
+        isZoomInProcess: false,
+        zoomTimeout: null,
         result: null,
         score: null,
         board:  [],
         user: null,
         flagMode: false,
         time: 0,
+        fullTime: 0,
         timeInterval: null,
       }
     },
@@ -150,6 +157,7 @@
         this.result = null
         this.score = null
         this.time = 0
+        this.fullTime = 0
         this.startGame()
       },
       startGame() {
@@ -171,7 +179,7 @@
         .catch(error => console.error('Error:', error));
       },
       onCellClick(rowIndex, colIndex, cell) {
-        if (!this.isGameInProcess) return
+        if (!this.isGameInProcess || this.isPanInProcess || this.isZoomInProcess) return
         fetch('https://repredess.ru/api/click', {
           method: 'POST',
           headers: {
@@ -190,13 +198,17 @@
               this.time ++
             }, 1000)
           }
-          this.time = Math.floor(data.time)
-
-          this.board = data.board
+          
           const status = data.status
           const score = data.score
+          const time = data.time
+
+          this.time = Math.floor(time)
+
+          this.board = data.board
 
           if (status === 'win') {
+            this.fullTime = time.toFixed(4)
             Telegram.WebApp.HapticFeedback.notificationOccurred('success')
             clearInterval(this.timeInterval)
             this.timeInterval = null
@@ -237,6 +249,23 @@
           this.flagMode = data.flag_mode
         })
         .catch(error => console.error('Error:', error));
+      },
+      onPanstart() {
+        console.log('pan start')
+        this.isPanInProcess = true
+      },
+      onPanend() {
+        setTimeout(() => {
+          console.log('pan end')
+          this.isPanInProcess = false
+        }, 100)
+      },
+      onZoom() {
+        this.isZoomInProcess = true
+        clearTimeout(this.zoomTimeout)
+        this.zoomTimeout = setTimeout(() => {
+          this.isZoomInProcess = false
+        }, 100)
       }
     }
   }

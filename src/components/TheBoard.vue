@@ -29,6 +29,18 @@
         }
       })
 
+      instance.on('panstart', () => {
+        this.$emit('panstart')
+      });
+
+      instance.on('panend', () => {
+        this.$emit('panend')
+      });
+
+      instance.on('zoom', () => {
+        this.$emit('zoom')
+      });
+
     }
   };
 </script>

@@ -11,7 +11,7 @@
           :class="{'success--text': game.result === 'win', 'error--text': game.result === 'lose'}"
         >{{ game.result }}</div>
         <div class="the-history-content__difficulty"><span class="text-secondary--text">Difficulty:</span> {{ game.difficulty }}</div>
-        <div v-if="game.result === 'win'" class="the-history-content__time"><span class="text-secondary--text">Time:</span> {{ Math.floor(game.time_spent) }} s</div>
+        <div v-if="game.result === 'win'" class="the-history-content__time"><span class="text-secondary--text">Time:</span> {{ game.time_spent.toFixed(4) }} s</div>
         <div v-if="game.result === 'win'" class="the-history-content__prize"><span class="text-secondary--text">XP:</span> +{{ game.score }}</div>
       </div>
       <div class="the-history-content__date text-secondary--text">{{ formatDateString(game.end_date) }}</div>

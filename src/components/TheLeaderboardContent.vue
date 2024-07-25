@@ -8,15 +8,15 @@
       <div class="the-leaderboard-content__card-title">{{ periods[period[0]] }}</div>
       <div class="the-leaderboard-content__grid">
         <div class="the-leaderboard-content__grid-header">Difficulty</div>
-        <div class="the-leaderboard-content__grid-header">User name</div>
-        <div class="the-leaderboard-content__grid-header">Score</div>
+        <div class="the-leaderboard-content__grid-header">Username</div>
+        <div class="the-leaderboard-content__grid-header">Time</div>
         <template
           v-for="(difficulty, dIdx) in period[1]"
           :key="dIdx"
         >
           <div class="the-leaderboard-content__grid-difficulty">{{ dIdx }}</div>
           <div>{{ difficulty.username }}</div>
-          <div>{{ Math.floor(difficulty.time_spent) }}</div>
+          <div>{{ difficulty.time_spent.toFixed(4) }} s</div>
         </template>
       </div>
     </BaseCard>
@@ -77,7 +77,7 @@
 
     &__grid {
       display: grid;
-      grid-template-columns: 100px 1fr 80px;
+      grid-template-columns: 90px 1fr 105px;
       width: 100%;
       border-radius: 8px;
       border: 1px solid var(--color-border);
@@ -85,9 +85,10 @@
 
       div {
         border-right: 1px solid var(--color-border);
-        padding: 8px 12px;
+        padding: 8px;
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
 
         &:nth-child(3n) {
           border-right: none;

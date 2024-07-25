@@ -11,14 +11,14 @@
   <div class="help-view__paragraph">
     <div class="help-view__title">Starting the Game</div>
     <div class="help-view__text">
-      Tap any cell to start the game. This will reveal the cell and possibly some neighboring cells.
+      Click on any cell to start the game. This will reveal the cell and possibly some neighboring cells.
     </div>
   </div>
   <div class="help-view__paragraph">
     <div class="help-view__title">Revealing Cells</div>
     <div class="help-view__text">
       <ul>
-        <li>Tap a cell to reveal it.</li>
+        <li>Click on a cell to reveal it.</li>
         <li>If the cell contains a mine, the game is over.</li>
         <li>If the cell doesn't contain a mine, it will show a number.</li>
         <li>The number indicates how many mines are in the eight surrounding cells.</li>
@@ -29,8 +29,8 @@
     <div class="help-view__title">Using Flags</div>
     <div class="help-view__text">
       <ul>
-        <li>Long tap a cell to place a flag if you suspect there's a mine underneath.</li>
-        <li>Long tap again to remove the flag if you change your mind.</li>
+        <li>Switch to flag setting mode and click a cell to place a flag if you suspect there's a mine underneath.</li>
+        <li>Click again to remove the flag if you change your mind.</li>
         <li>Use flags to keep track of where you think the mines are.</li>
       </ul>
     </div>

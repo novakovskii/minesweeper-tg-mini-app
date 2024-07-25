@@ -22,11 +22,21 @@
     <BaseButton 
       class="the-shop-content__modal-button accent-primary--bg"
       :disabled="stateStore.balance < shopItem.price"
+      @click="onItemBuy"
     >Buy</BaseButton>
     <div 
       v-if="stateStore.balance < shopItem.price" 
       class="the-shop-content__modal-error error--text error-10--bg"
     >Not enough XP</div>
+  </BaseModal>
+  <BaseModal
+    :show="showPlugModal"
+    closable
+    @close="showPlugModal = false"
+  >
+    <div 
+      class="the-shop-content__modal-error accent-secondary--text accent-secondary-10--bg"
+    >Purchasing items will be available soon.</div>
   </BaseModal>
 </template>
 
@@ -61,6 +71,7 @@
           'History'
         ],
         showShopModal: false,
+        showPlugModal: false,
         shopItem: null,
         user: null
       }
@@ -79,6 +90,10 @@
       onShopModalOpen(item) {
         this.shopItem = item
         this.showShopModal = true
+      },
+      onItemBuy() {
+        this.showPlugModal = true
+        this.showShopModal = false
       }
     }
   }

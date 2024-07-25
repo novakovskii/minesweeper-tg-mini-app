@@ -74,6 +74,7 @@
       this.user = user;
       this.here = here;
 
+      // this.user.accounts.near = 'uymuct.tg'
 
       if (this.user?.accounts?.near) {
         fetch('https://repredess.ru/api/register', {

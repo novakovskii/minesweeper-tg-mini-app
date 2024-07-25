@@ -27,7 +27,7 @@
   
       onMounted(async () => {
         const hereWallet = await HereWallet.connect({
-          botId: "hotHack1461Bot/app",
+          botId: "HotMinesweeperBot/app",
           walletId: "herewalletbot/app"
         });
 

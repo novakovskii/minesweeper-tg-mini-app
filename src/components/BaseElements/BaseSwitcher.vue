@@ -28,6 +28,7 @@ export default {
     position: relative;
     cursor: pointer;
     box-shadow: var(--color-text-primary) 2px 2px 0px;
+    transition: all .1s ease-in-out;
     
 
     &__button {
@@ -38,6 +39,7 @@ export default {
       outline: 1px solid var(--color-text-primary);
       position: absolute;
       left: 0;
+      transition: all .1s ease-in-out;
     }
   }
 
@@ -51,8 +53,7 @@ export default {
         background-color: var(--color-accent-primary);
 
         .base-switcher__button {
-          left: unset;
-          right: 0;
+          left: calc(100% - 20px);
         }
       }
     }

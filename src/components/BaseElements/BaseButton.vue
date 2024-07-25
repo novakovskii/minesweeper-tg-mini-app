@@ -28,6 +28,7 @@ export default {
     justify-content: center;
     gap: 8px;
     height: 46px;
+    min-height: 46px;
     padding: 0 16px;
     color: var(--color-text-primary);
     font-size: 16px;

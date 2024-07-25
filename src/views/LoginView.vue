@@ -107,6 +107,7 @@
     flex-direction: column;
     align-items: center;
     padding: 16px;
+    height: 100%;
 
     &__preview {
       width: 100%;
@@ -130,6 +131,7 @@
       font-weight: 600;
       text-align: center;
       margin-bottom: 16px;
+      flex: 1;
     }
 
     &__button {

@@ -38,7 +38,7 @@
     >
       <template v-if="result === 'win'">
         <div class="game-view__result-title">Congratulations!<br>You've cleared all the mines in <span class="accent-secondary--text">{{ time }}</span> seconds.</div>
-        <div class="game-view__result-text success--text success-10--bg">+{{ gameOption.prize }} XP</div>
+        <div class="game-view__result-text success--text success-10--bg">+{{ score }} XP</div>
       </template>
       <template v-else-if="result === 'loss'">
         <div class="game-view__result-title">Oops! You hit a mine.</div>
@@ -103,6 +103,7 @@
       return {
         isGameInProcess: false,
         result: null,
+        score: null,
         board:  [],
         user: null,
         flagMode: false,
@@ -135,8 +136,6 @@
       this.user = user;
     },
     mounted() {
-      
-
       Telegram.WebApp.BackButton.show()
       Telegram.WebApp.onEvent('backButtonClicked', () => {
         this.$router.push('/main')
@@ -149,6 +148,7 @@
     methods: {
       playAgain() {
         this.result = null
+        this.score = null
         this.time = 0
         this.startGame()
       },
@@ -194,6 +194,8 @@
 
           this.board = data.board
           const status = data.status
+          const score = data.score
+
           if (status === 'win') {
             clearInterval(this.timeInterval)
             this.timeInterval = null
@@ -205,6 +207,7 @@
               return cell
             } ))
             this.result = 'win'
+            this.score = score
           }
           else if (status === 'game_over') {
             clearInterval(this.timeInterval)

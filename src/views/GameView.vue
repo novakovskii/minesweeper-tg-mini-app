@@ -211,8 +211,11 @@
           }
           else if (status === 'game_over') {
             if (window.navigator && window.navigator.vibrate) {
-              window.navigator?.vibrate(500);
+              window.navigator.vibrate(500);
+            } else {
+              Telegram.WebApp.HapticFeedback.notificationOccurred('error')
             }
+            
             clearInterval(this.timeInterval)
             this.timeInterval = null
             this.isGameInProcess = false

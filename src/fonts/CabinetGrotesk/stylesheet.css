@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'Cabinet Grotesk';
     src: url('CabinetGrotesk-Black.eot');
     src: url('CabinetGrotesk-Black.eot?#iefix') format('embedded-opentype'),
@@ -8,7 +8,7 @@
     font-weight: bold;
     font-style: normal;
     font-display: swap;
-}
+} */
 
 @font-face {
     font-family: 'Cabinet Grotesk';
@@ -22,7 +22,7 @@
     font-display: swap;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Cabinet Grotesk';
     src: url('CabinetGrotesk-Bold.eot');
     src: url('CabinetGrotesk-Bold.eot?#iefix') format('embedded-opentype'),
@@ -92,5 +92,5 @@
     font-weight: 100;
     font-style: normal;
     font-display: swap;
-}
+} */
 

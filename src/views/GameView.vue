@@ -16,7 +16,7 @@
           :key="colIndex"
           :icons="stateStore.icons"
           :variant="cell"
-          :style="{fontSize: gameOption.difficulty === 'easy' ? '28px' : '16px'}"
+          :style="{fontSize: gameOption.difficulty === 'easy' ? '7vw' : '4vw'}"
           :class="{'base-cell--not-clickable': !isGameInProcess || flagMode}"
           @click="onCellClick(rowIndex, colIndex, cell)"
           @touchend="onCellClick(rowIndex, colIndex, cell)"
@@ -159,7 +159,7 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ 
-            user_id: this.user.accounts.near === '' ? 'uymuct.tg' : this.user.accounts.near,
+            user_id: this.user.accounts.near,
             difficulty: this.gameOption.difficulty
           })
         })
@@ -178,7 +178,7 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ 
-            user_id: this.user.accounts.near === '' ? 'uymuct.tg' : this.user.accounts.near,
+            user_id: this.user.accounts.near,
             row: rowIndex,
             column: colIndex
           })
@@ -223,7 +223,7 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ 
-            user_id: this.user.accounts.near === '' ? 'uymuct.tg' : this.user.accounts.near
+            user_id: this.user.accounts.near
           })
         })
         .then(response => response.json())

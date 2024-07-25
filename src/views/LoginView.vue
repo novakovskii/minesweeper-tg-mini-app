@@ -74,24 +74,10 @@
       this.user = user;
       this.here = here;
 
-      console.log('user', user)
-      console.log('here', here)
+      console.log(this.user?.accounts?.near)
 
       if (this.user?.accounts?.near) {
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        const raw = JSON.stringify({
-          "name": this.user.accounts.near
-        });
-
-        const requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: raw
-        };
-
-        fetch('https://repredess.ru/register', {
+        fetch('https://repredess.ru/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -102,7 +88,7 @@
         })
         .then(response => response.json())
         .then(data => {
-          console.log('Registered', data)
+          // loader
         })
         .catch(error => console.error('Error:', error));
 
@@ -139,7 +125,7 @@
     }
 
     &__title {
-      font-family: 'Cabinet Grotesk';
+      font-family: var(--font-family-secondary);
       font-size: 40px;
       font-weight: 600;
       text-align: center;

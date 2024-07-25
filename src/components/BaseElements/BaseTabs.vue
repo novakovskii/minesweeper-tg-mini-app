@@ -115,7 +115,6 @@
             }
         }
         
-        // throw new Error("Прогресс выходит за пределы заданных интервалов");
       },
       calculateWidth(progress) {
         
@@ -132,7 +131,6 @@
             }
         }
         
-        // throw new Error("Прогресс выходит за пределы заданных интервалов");
       }
     }
   };
@@ -169,13 +167,8 @@
     justify-content: center;
     cursor: pointer;
 
-    &--active {
-      // color: #f00;
-    }
-
     &__marker {
       background-color: var(--color-bg-secondary);
-      // padding: 0 16px;
       height: 36px;
       border-radius: 12px;
       outline: 1px solid var(--color-border);

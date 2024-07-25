@@ -1,7 +1,8 @@
 <template>
   <BaseCardWrapper class="the-history-content">
     <BaseCard
-      v-for="(game, index) in games"
+      v-for="(game, idx) in stateStore.games"
+      :key="idx"
       class="the-history-content__card"
     >
       <div class="the-history-content__game-info">
@@ -22,6 +23,8 @@
   import BaseCardWrapper from './BaseElements/BaseCardWrapper.vue';
   import BaseCard from './BaseElements/BaseCard.vue';
   import { useHotWallet } from '../components/HotWalletProvider.vue';
+  import { mapStores } from 'pinia'
+  import { useStateStore } from '../stores/state'
 
   export default {
     name: 'TheHistoryContent',
@@ -35,17 +38,20 @@
         user: null
       }
     },
+    computed: {
+      ...mapStores(useStateStore)
+    },
     created() {
       const { user } = useHotWallet();
       this.user = user;
     },
     mounted() {
-      fetch(`https://repredess.ru/api/get_game_history?user_id=${this.user.accounts.near === '' ? 'uymuct.tg' : this.user.accounts.near}`, {
+      fetch(`https://repredess.ru/api/get_game_history?user_id=${this.user.accounts.near}`, {
         method: 'GET'
       })
       .then(response => response.json())
       .then(data => {
-        this.games = data.games
+        this.stateStore.games = data.games
       })
       .catch(error => console.error('Error:', error));
     },

@@ -28,6 +28,7 @@
       onMounted(async () => {
         const hereWallet = await HereWallet.connect({
           botId: "HotMinesweeperBot/app",
+          // botId: "hotHack1461Bot/app",
           walletId: "herewalletbot/app"
         });
 
@@ -37,7 +38,6 @@
         if (isSigned) {
           const near = await hereWallet.getAccountId();
           user.accounts.near = near;
-          // Update other accounts if needed
         }
       });
   

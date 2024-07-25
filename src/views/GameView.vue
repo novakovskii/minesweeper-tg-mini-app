@@ -37,7 +37,7 @@
       @close="result = null"
     >
       <template v-if="result === 'win'">
-        <div class="game-view__result-title">Congratulations!<br>You've cleared all the mines in <span class="accent-secondary--text">{{ time }}</span> seconds.</div>
+        <div class="game-view__result-title">Congratulations!<br>You've cleared all the mines in&nbsp;<span class="accent-secondary--text">{{ time }}</span>&nbsp;seconds.</div>
         <div class="game-view__result-text success--text success-10--bg">+{{ score }} XP</div>
       </template>
       <template v-else-if="result === 'loss'">
@@ -210,6 +210,9 @@
             this.score = score
           }
           else if (status === 'game_over') {
+            if (window.navigator && window.navigator.vibrate) {
+              window.navigator?.vibrate(500);
+            }
             clearInterval(this.timeInterval)
             this.timeInterval = null
             this.isGameInProcess = false

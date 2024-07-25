@@ -74,7 +74,6 @@
       this.user = user;
       this.here = here;
 
-      console.log(this.user?.accounts?.near)
 
       if (this.user?.accounts?.near) {
         fetch('https://repredess.ru/api/register', {

@@ -9,9 +9,21 @@
         :svg="stateStore.icons.user" 
       />
       <div class="profile-view__user-info">
-        <div v-if="user.accounts.near" class="profile-view__address">{{ user.accounts.near }}</div>
+        <div v-if="user.accounts.near" class="profile-view__card-title">{{ user.accounts.near }}</div>
         <div v-else class="profile-view__address">unidentified.address</div>
         <div class="profile-view__balance text-secondary--text">{{ stateStore.balance }} XP</div>
+      </div>
+    </BaseCard>
+    <BaseCard class="profile-view__card profile-view__card--statistics">
+      <BaseIcon 
+        class="profile-view__icon profile-view__icon--sheet"
+        :svg="stateStore.icons.sheet" 
+      />
+      <div class="profile-view__statistics-info">
+        <div class="profile-view__card-title">Statistics</div>
+        <div><span class="text-secondary--text">Wins:</span> {{ stateStore.winCount }}</div>
+        <div><span class="text-secondary--text">Losses:</span> {{ stateStore.totalGameCount - stateStore.winCount }}</div>
+        <div><span class="text-secondary--text">Total:</span> {{ stateStore.totalGameCount }}</div>
       </div>
     </BaseCard>
     <BaseCard 
@@ -71,6 +83,8 @@
       .then(response => response.json())
       .then(data => {
         this.stateStore.setBalance(data.score)
+        this.stateStore.setTotalGameCount(data.games_played)
+        this.stateStore.setWinCount(data.wins)
       })
       .catch(error => console.error('Error:', error));
     },
@@ -116,20 +130,33 @@
         border: 1px solid var(--color-border);
       }
 
+      &--sheet {
+        background-color: var(--color-bg-primary);
+        border: 1px solid var(--color-border);
+      }
+
       &--logout {
         background-color: var(--color-error-10);
         border: 1px solid var(--color-error-10);
       }
     }
 
-    &__address {
-      font-size: 16px;
-      margin-bottom: 4px;
-      font-weight: 600
-    }
-
     &__balance {
       font-size: 14px;
     }
+
+    &__card-title {
+      font-size: 16px;
+      margin-bottom: 8px;
+      font-weight: 600
+    }
+
+    &__statistics-info {
+
+      div:not(.profile-view__card-title):not(:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+    
   }
 </style>

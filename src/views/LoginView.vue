@@ -83,7 +83,7 @@
       this.user = user;
       this.here = here;
 
-      this.user.accounts.near = 'uymuct.tg'
+      // this.user.accounts.near = 'uymuct.tg'
 
       if (this.user?.accounts?.near) {
         fetch(`${import.meta.env.VITE_API_URL}/api/register`, {

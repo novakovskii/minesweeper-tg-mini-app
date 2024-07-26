@@ -86,7 +86,7 @@
       // this.user.accounts.near = 'uymuct.tg'
 
       if (this.user?.accounts?.near) {
-        fetch('https://repredess.ru/api/register', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

@@ -50,7 +50,7 @@
       ...mapStores(useStateStore)
     },
     mounted() {
-      fetch(`https://repredess.ru/api/get_leaderboard`, {
+      fetch(`${import.meta.env.VITE_API_URL}/api/get_leaderboard`, {
         method: 'GET'
       })
       .then(response => response.json())

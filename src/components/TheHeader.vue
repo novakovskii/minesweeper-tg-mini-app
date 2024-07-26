@@ -39,7 +39,7 @@
       }
     },
     mounted() {
-      fetch(`https://repredess.ru/api/get_score?user_id=${this.user.accounts.near}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/api/get_score?user_id=${this.user.accounts.near}`, {
         method: 'GET'
       })
       .then(response => response.json())

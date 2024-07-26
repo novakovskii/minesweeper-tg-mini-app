@@ -161,7 +161,7 @@
         this.startGame()
       },
       startGame() {
-        fetch('https://repredess.ru/api/start', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/start`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -180,7 +180,7 @@
       },
       onCellClick(rowIndex, colIndex, cell) {
         if (!this.isGameInProcess || this.isPanInProcess || this.isZoomInProcess) return
-        fetch('https://repredess.ru/api/click', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/click`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -235,7 +235,7 @@
         .catch(error => console.error('Error:', error));
       },
       onFlagModeToggle() {
-        fetch('https://repredess.ru/api/toggle_flag_mode', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/toggle_flag_mode`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

@@ -14,9 +14,11 @@
           v-for="(difficulty, dIdx) in period[1]"
           :key="dIdx"
         >
-          <div class="the-leaderboard-content__grid-difficulty">{{ dIdx }}</div>
-          <div>{{ difficulty.username }}</div>
-          <div>{{ difficulty.time_spent.toFixed(4) }} s</div>
+          <template v-if="difficulty[1]">
+            <div class="the-leaderboard-content__grid-difficulty">{{ difficulty[0] }}</div>
+            <div>{{ difficulty[1].username }}</div>
+            <div>{{ difficulty[1].time_spent.toFixed(4) }} s</div>
+          </template>
         </template>
       </div>
     </BaseCard>
@@ -53,9 +55,15 @@
       })
       .then(response => response.json())
       .then(data => {
-        const sortingArray = ['daily', 'weekly', 'all_time']
-        const resultArray = Object.entries(data.leaderboard).sort((a, b)=>{
-          return sortingArray.indexOf(a[0]) - sortingArray.indexOf(b[0]); 
+        const periodSortingArray = ['daily', 'weekly', 'all_time']
+        const difficultySortingArray = ['easy', 'medium', 'hard']
+        const resultArray = Object.entries(data.leaderboard).map(period => {
+          period[1] = Object.entries(period[1]).sort((a, b) => {
+            return difficultySortingArray.indexOf(a[0]) - difficultySortingArray.indexOf(b[0]); 
+          })
+          return period
+        }).sort((a, b)=>{
+          return periodSortingArray.indexOf(a[0]) - periodSortingArray.indexOf(b[0]); 
         })
         this.stateStore.setLeaderboard(resultArray)
       })

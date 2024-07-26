@@ -84,6 +84,13 @@
     box-sizing: border-box;
     padding: 1px 16px;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
   }
 
   .tab {

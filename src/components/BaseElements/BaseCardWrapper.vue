@@ -17,6 +17,12 @@
     padding: 0 16px;
     overflow: auto;
     max-height: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .base-card {
 

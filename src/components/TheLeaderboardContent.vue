@@ -19,6 +19,11 @@
             <div>{{ difficulty[1].username }}</div>
             <div>{{ difficulty[1].time_spent.toFixed(4) }} s</div>
           </template>
+          <template v-else>
+            <div class="the-leaderboard-content__grid-difficulty">{{ difficulty[0] }}</div>
+            <div>-</div>
+            <div>-</div>
+          </template>
         </template>
       </div>
     </BaseCard>
@@ -61,7 +66,7 @@
           period[1] = Object.entries(period[1]).sort((a, b) => {
             return difficultySortingArray.indexOf(a[0]) - difficultySortingArray.indexOf(b[0]); 
           })
-          return period
+                    return period
         }).sort((a, b)=>{
           return periodSortingArray.indexOf(a[0]) - periodSortingArray.indexOf(b[0]); 
         })

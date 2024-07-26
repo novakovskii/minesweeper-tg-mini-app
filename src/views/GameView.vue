@@ -83,6 +83,9 @@
   import BaseSwitcher from '../components/BaseElements/BaseSwitcher.vue';
   import BaseIcon from '../components/BaseElements/BaseIcon.vue';
   import { useHotWallet } from '../components/HotWalletProvider.vue';
+  import { io } from 'socket.io-client';
+
+  const socket = io(import.meta.env.VITE_API_URL);
 
   export default {
     name: 'GameView',
@@ -143,6 +146,47 @@
       this.user = user;
     },
     mounted() {
+      socket.on('game_response', (data) => {
+        if (!this.timeInterval) {
+          this.timeInterval = setInterval(() => {
+            this.time ++
+          }, 1000)
+        }
+        
+        const status = data.status
+        const score = data.score
+        const time = data.time
+
+        this.time = Math.floor(time)
+
+        this.board = data.board
+
+        if (status === 'win') {
+          this.fullTime = time.toFixed(4)
+          Telegram.WebApp.HapticFeedback.notificationOccurred('success')
+          clearInterval(this.timeInterval)
+          this.timeInterval = null
+          this.isGameInProcess = false
+          this.board = this.board.map(row => row.map(cell => { 
+            if (cell === 'unrevealed') {
+              return 'flag'
+            }
+            return cell
+          } ))
+          this.result = 'win'
+          this.score = score
+        }
+        else if (status === 'game_over') {
+          Telegram.WebApp.HapticFeedback.notificationOccurred('error')
+          
+          clearInterval(this.timeInterval)
+          this.timeInterval = null
+          this.isGameInProcess = false
+          this.board[rowIndex][colIndex] = 'bomb-exploded'
+          this.result = 'loss'
+        }
+      });
+
       Telegram.WebApp.BackButton.show()
       Telegram.WebApp.onEvent('backButtonClicked', () => {
         this.$router.push('/main')
@@ -180,59 +224,65 @@
       },
       onCellClick(rowIndex, colIndex, cell) {
         if (!this.isGameInProcess || this.isPanInProcess || this.isZoomInProcess) return
-        fetch(`${import.meta.env.VITE_API_URL}/api/click`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ 
-            user_id: this.user.accounts.near,
-            row: rowIndex,
-            column: colIndex
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (!this.timeInterval) {
-            this.timeInterval = setInterval(() => {
-              this.time ++
-            }, 1000)
-          }
+
+        socket.emit('click', { 
+          user_id: this.user.accounts.near,
+          row: rowIndex,
+          column: colIndex
+        });
+        // fetch(`${import.meta.env.VITE_API_URL}/api/click`, {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify({ 
+        //     user_id: this.user.accounts.near,
+        //     row: rowIndex,
+        //     column: colIndex
+        //   })
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //   if (!this.timeInterval) {
+        //     this.timeInterval = setInterval(() => {
+        //       this.time ++
+        //     }, 1000)
+        //   }
           
-          const status = data.status
-          const score = data.score
-          const time = data.time
+        //   const status = data.status
+        //   const score = data.score
+        //   const time = data.time
 
-          this.time = Math.floor(time)
+        //   this.time = Math.floor(time)
 
-          this.board = data.board
+        //   this.board = data.board
 
-          if (status === 'win') {
-            this.fullTime = time.toFixed(4)
-            Telegram.WebApp.HapticFeedback.notificationOccurred('success')
-            clearInterval(this.timeInterval)
-            this.timeInterval = null
-            this.isGameInProcess = false
-            this.board = this.board.map(row => row.map(cell => { 
-              if (cell === 'unrevealed') {
-                return 'flag'
-              }
-              return cell
-            } ))
-            this.result = 'win'
-            this.score = score
-          }
-          else if (status === 'game_over') {
-            Telegram.WebApp.HapticFeedback.notificationOccurred('error')
+        //   if (status === 'win') {
+        //     this.fullTime = time.toFixed(4)
+        //     Telegram.WebApp.HapticFeedback.notificationOccurred('success')
+        //     clearInterval(this.timeInterval)
+        //     this.timeInterval = null
+        //     this.isGameInProcess = false
+        //     this.board = this.board.map(row => row.map(cell => { 
+        //       if (cell === 'unrevealed') {
+        //         return 'flag'
+        //       }
+        //       return cell
+        //     } ))
+        //     this.result = 'win'
+        //     this.score = score
+        //   }
+        //   else if (status === 'game_over') {
+        //     Telegram.WebApp.HapticFeedback.notificationOccurred('error')
             
-            clearInterval(this.timeInterval)
-            this.timeInterval = null
-            this.isGameInProcess = false
-            this.board[rowIndex][colIndex] = 'bomb-exploded'
-            this.result = 'loss'
-          }
-        })
-        .catch(error => console.error('Error:', error));
+        //     clearInterval(this.timeInterval)
+        //     this.timeInterval = null
+        //     this.isGameInProcess = false
+        //     this.board[rowIndex][colIndex] = 'bomb-exploded'
+        //     this.result = 'loss'
+        //   }
+        // })
+        // .catch(error => console.error('Error:', error));
       },
       onFlagModeToggle() {
         fetch(`${import.meta.env.VITE_API_URL}/api/toggle_flag_mode`, {

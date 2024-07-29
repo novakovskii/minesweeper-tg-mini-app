@@ -45,6 +45,19 @@
     transition: box-shadow 0.2s ease 0s, transform 0.2s ease 0s;
     box-shadow: var(--color-text-primary) 4px 4px 0px;
     z-index: -1;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      border-left: 4px solid var(--color-text-primary);
+      border-top: 4px solid var(--color-text-primary);
+      pointer-events: none;
+      display: none;
+      transition: all 0.2s ease 0s, transform 0.2s ease 0s;
+    }
 
     div {
       width: 100%;
@@ -58,7 +71,9 @@
       background-color: var(--color-accent-primary);
 
       &:not(.base-cell--not-clickable):active {
-        transform: translate(4px, 4px);
+        &::before {
+          display: block;
+        }
       }
     }
 

@@ -19,14 +19,14 @@ export const useStateStore = defineStore('state', {
         difficulty: 'medium',
         cols: 16,
         rows: 16,
-        prize: 3000,
+        prize: 6000,
         mines: 40
       },
       {
         difficulty: 'hard',
         cols: 16,
         rows: 30,
-        prize: 6000,
+        prize: 25000,
         mines: 99
       }
     ],
